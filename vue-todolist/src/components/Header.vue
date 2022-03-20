@@ -1,0 +1,20 @@
+<template>
+  <header class="bl_header">Todo List</header>
+</template>
+
+<style scoped>
+@import "../assets/base.css";
+
+.bl_header {
+  background-color: #42b883;
+  width: 100%;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  border-radius: 15px 15px 0 0;
+  font-weight: 700;
+  font-size: 24px;
+}
+</style>
