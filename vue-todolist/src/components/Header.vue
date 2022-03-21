@@ -1,10 +1,20 @@
+<script>
+export default {
+  setup() {},
+  data() {
+    return {
+      title: "Todo List",
+    };
+  },
+};
+</script>
 <template>
-  <header class="bl_header">Todo List</header>
+  <header class="bl_header">
+    <span>{{ title }}</span>
+  </header>
 </template>
 
-<style scoped>
-@import "../assets/base.css";
-
+<style scoped lang="scss">
 .bl_header {
   background-color: #42b883;
   width: 100%;

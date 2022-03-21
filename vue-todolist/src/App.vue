@@ -6,6 +6,11 @@ import TodoList from "./components/TodoList.vue";
   <TodoList />
 </template>
 
-<style>
+<style lang="scss">
 @import "./assets/base.css";
+body,
+html,
+#app {
+  height: 100%;
+}
 </style>
