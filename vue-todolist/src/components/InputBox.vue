@@ -35,11 +35,6 @@ export default {
   align-items: center;
   cursor: pointer;
   background-color: #eeeeee;
-
-  .el_addBtnImg__green {
-    filter: invert(58%) sepia(54%) saturate(452%) hue-rotate(101deg)
-      brightness(97%) contrast(86%);
-  }
 }
 .bl_inputWrap {
   display: flex;

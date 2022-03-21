@@ -19,7 +19,7 @@ export default {
 <template>
   <div class="bl_selectWrap">
     <select name="" id="" class="bl_realSelectBox hp_hidden" ref="realSelect">
-      <option value="All">All</option>
+      <option value="All" selected>All</option>
       <option value="Complete">Complete</option>
       <option value="Incomplete">Incomplete</option>
     </select>
@@ -66,8 +66,14 @@ export default {
     padding-left: 10px;
     max-width: 150%;
     width: 100%;
-    background-color: #a3f0cd;
+    background-color: #42b883cc;
     height: 50px;
+    color: #333;
+    transition: 0.15s;
+  }
+  .bl_selectBoxItem:hover {
+    background-color: #42b883;
+    color: #fff;
   }
   .bl_selectBoxItemWrap {
     visibility: hidden;

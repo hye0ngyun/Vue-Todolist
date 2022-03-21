@@ -3,6 +3,19 @@ import Header from "./Header.vue";
 import InputBox from "./InputBox.vue";
 import SearchBox from "./SearchBox.vue";
 import SelectBox from "./SelectBox.vue";
+import List from "./List.vue";
+// export default {
+//   data() {
+//     return { greeting: "helloWorld" };
+//   },
+// };
+const cont = "helloWorld!";
+let id = 0;
+let todos = [
+  { id: id++, cont: cont, done: false },
+  { id: id++, cont: "JavaScript 공부하기", done: true },
+];
+console.log(todos);
 </script>
 <template>
   <div class="wrap">
@@ -13,6 +26,15 @@ import SelectBox from "./SelectBox.vue";
         <SearchBox />
         <SelectBox />
       </div>
+      <ul>
+        <List
+          v-for="todo in todos"
+          :key="todo.id"
+          :cont="todo.cont + todo.done"
+          :done="todo.done"
+          :idNum="todo.id"
+        />
+      </ul>
     </main>
   </div>
 </template>

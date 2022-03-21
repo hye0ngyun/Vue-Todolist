@@ -1,3 +1,5 @@
+@import "./reset.css";
+
 @font-face {
   font-family: "Noto Sans KR";
   src: url(@/assets/fonts/Noto_Sans_KR/NotoSansKR-Thin.otf);
