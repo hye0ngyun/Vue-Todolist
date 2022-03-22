@@ -13,6 +13,9 @@ export default {
     removeList(e) {
       this.$emit("removeList", this.obj.id);
     },
+    updateListPopup() {
+      this.$emit("updateListPopup", this.obj.id, this.obj.cont);
+    },
   },
 };
 </script>
@@ -43,7 +46,12 @@ export default {
     </div>
 
     <div class="bl_imgWrap">
-      <img src="@/assets/image/edit_black_24dp.svg" alt="" class="el_img" />
+      <img
+        src="@/assets/image/edit_black_24dp.svg"
+        alt=""
+        class="el_img"
+        @click="updateListPopup"
+      />
       <img
         src="@/assets/image/remove_circle_outline_black_24dp.svg"
         alt=""

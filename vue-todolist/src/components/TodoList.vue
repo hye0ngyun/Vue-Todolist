@@ -5,8 +5,9 @@ import InputBox from "./InputBox.vue";
 import SearchBox from "./SearchBox.vue";
 import SelectBox from "./SelectBox.vue";
 import List from "./List.vue";
+import UpdatePopup from "./UpdatePopup.vue";
 
-const cont = ref("");
+const txt = ref("");
 let id = 0;
 const todos = ref([
   { id: id++, cont: "test1", done: false },
@@ -17,6 +18,13 @@ const searchText = ref("");
 let searchRegex = ref(new RegExp(searchText.value, "i"));
 const filteredTodos = computed(() => {
   // searchText가 입력될때마다 조건에 맞는 결과 보여주기
+  // 리스트를 수정한 경우 todos.cont를 업데이트
+  todos.value = todos.value.map((t) => {
+    if (!!txt.value) {
+      t.cont = t.id === updateId.value ? txt.value : t.cont;
+    }
+    return t;
+  });
   searchRegex = ref(new RegExp(`${searchText.value}`, "i"));
   if (option.value === "All") {
     return todos.value.filter((t) => searchRegex.value.test(t.cont));
@@ -26,6 +34,8 @@ const filteredTodos = computed(() => {
     return todos.value.filter((t) => !t.done && searchRegex.value.test(t.cont));
   }
 });
+const popupBool = ref(false);
+const updateId = ref(0);
 </script>
 <template>
   <div class="wrap">
@@ -45,9 +55,28 @@ const filteredTodos = computed(() => {
           :key="todo.id"
           :obj="todo"
           @removeList="(id) => (todos = todos.filter((t) => t.id !== id))"
+          @updateListPopup="
+            (id, t) => {
+              popupBool = !popupBool;
+              updateId = id;
+              txt = t;
+            }
+          "
         />
       </ul>
     </main>
+    <UpdatePopup
+      v-if="popupBool"
+      :popupBool="popupBool"
+      :txt="txt"
+      @cancelPopup="popupBool = !popupBool"
+      @updateList="
+        (text) => {
+          popupBool = !popupBool;
+          txt = text;
+        }
+      "
+    />
   </div>
 </template>
 
