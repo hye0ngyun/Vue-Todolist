@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import Header from "./Header.vue";
 import InputBox from "./InputBox.vue";
 import SearchBox from "./SearchBox.vue";
@@ -9,31 +10,30 @@ import List from "./List.vue";
 //     return { greeting: "helloWorld" };
 //   },
 // };
-const cont = "helloWorld!";
+const cont = ref("");
 let id = 0;
-let todos = [
-  { id: id++, cont: cont, done: false },
+let todos = ref([
+  { id: id++, cont: "test1", done: false },
   { id: id++, cont: "JavaScript 공부하기", done: true },
-];
-console.log(todos);
+]);
+const childMsg = ref("No child msg yet");
+console.log(id);
 </script>
 <template>
   <div class="wrap">
     <main class="bl_todolist">
       <Header />
-      <InputBox />
+      <InputBox
+        :todos="todos"
+        @addList="(msg) => todos.push({ id: id++, cont: msg, done: false })"
+      />
+      <div>{{ childMsg }}</div>
       <div class="bl_filterWrap">
         <SearchBox />
         <SelectBox />
       </div>
       <ul>
-        <List
-          v-for="todo in todos"
-          :key="todo.id"
-          :cont="todo.cont + todo.done"
-          :done="todo.done"
-          :idNum="todo.id"
-        />
+        <List v-for="todo in todos" :key="todo.id" :obj="todo" />
       </ul>
     </main>
   </div>

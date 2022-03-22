@@ -1,26 +1,40 @@
+<script>
+export default {
+  // data() {
+  //   return;
+  // },
+  props: {
+    // cont: String,
+    // done: Boolean,
+    // idNum: Number,
+    obj: Object,
+  },
+};
+</script>
+
 <template>
   <li class="bl_list">
     <div class="bl_contWrap">
       <input
         type="checkbox"
         name=""
-        :id="'chk' + idNum"
+        :id="'chk' + obj.id"
         class="hp_hidden"
-        v-model="done"
+        v-model="obj.done"
       />
-      <label :for="'chk' + idNum">
+      <label :for="'chk' + obj.id">
         <img
           src="@/assets/image/checkbox_t.svg"
           alt=""
           class="el_img"
-          v-if="done"
+          v-if="obj.done"
         />
         <img src="@/assets/image/checkbox_f.svg" alt="" class="el_img" v-else />
       </label>
-      <span class="bl_cont" v-if="done">{{ cont || "props not passed" }}</span>
-      <span class="bl_cont bl_cont__done" v-else>{{
-        cont || "props not passed"
+      <span class="bl_cont bl_cont__done" v-if="obj.done">{{
+        obj.cont || "props not passed"
       }}</span>
+      <span class="bl_cont" v-else>{{ obj.cont || "props not passed" }}</span>
     </div>
 
     <div class="bl_imgWrap">
@@ -33,19 +47,6 @@
     </div>
   </li>
 </template>
-
-<script>
-export default {
-  // data() {
-  //   return;
-  // },
-  props: {
-    cont: String,
-    done: Boolean,
-    idNum: Number,
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 .hp_hidden {

@@ -3,15 +3,51 @@ export default {
   setup() {},
   data() {
     return {
-      title: "Todo List",
+      text: "",
+      id: 2,
     };
+  },
+  computed: {
+    // id() {
+    //   return idNum;
+    // },
+  },
+  emits: ["addList"],
+  props: {
+    todos: {
+      id: Number,
+      cont: String,
+      done: Boolean,
+    },
+    idNum: Number,
+  },
+  methods: {
+    addList(e) {
+      console.log(this);
+      // this.todos.push({ id: this.id++, cont: this.text, done: false });
+      this.$emit("addList", this.text);
+      // this.todos.push({
+      //   id: this.idNum++,
+      //   cont: "JavaScript 공부하기",
+      //   done: true,
+      // });
+
+      console.log(this.todos, this.idNum);
+      // console.log(this.idNum++);
+    },
   },
 };
 </script>
+
 <template>
   <div class="bl_inputWrap">
-    <input class="bl_inputBox" type="text" placeholder="할 일을 입력하세요" />
-    <div class="el_addBtn">
+    <input
+      class="bl_inputBox"
+      type="text"
+      placeholder="할 일을 입력하세요"
+      v-model="text"
+    />
+    <div class="el_addBtn" @click="addList">
       <img
         src="@/assets/image/add_circle_outline_black_24dp.svg"
         alt="addBtn"
