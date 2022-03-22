@@ -3,14 +3,21 @@ export default {
   setup() {},
   data() {
     return {
-      title: "Todo List",
+      searchText: "",
     };
   },
 };
 </script>
+
 <template>
   <div class="bl_searchWrap">
-    <input class="bl_searchBox" type="text" placeholder="검색어를 입력하세요" />
+    <input
+      class="bl_searchBox"
+      type="text"
+      placeholder="검색어를 입력하세요"
+      v-model="searchText"
+      @input="this.$emit('searchInput', searchText)"
+    />
     <img
       src="@/assets/image/search_black_24dp.svg"
       alt="addBtn"

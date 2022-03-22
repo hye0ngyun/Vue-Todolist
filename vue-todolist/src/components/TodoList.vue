@@ -5,11 +5,7 @@ import InputBox from "./InputBox.vue";
 import SearchBox from "./SearchBox.vue";
 import SelectBox from "./SelectBox.vue";
 import List from "./List.vue";
-// export default {
-//   data() {
-//     return { greeting: "helloWorld" };
-//   },
-// };
+
 const cont = ref("");
 let id = 0;
 const todos = ref([
@@ -17,14 +13,17 @@ const todos = ref([
   { id: id++, cont: "JavaScript 공부하기", done: true },
 ]);
 const option = ref("All");
+const searchText = ref("");
+let searchRegex = ref(new RegExp(searchText.value, "i"));
 const filteredTodos = computed(() => {
+  // searchText가 입력될때마다 조건에 맞는 결과 보여주기
+  searchRegex = ref(new RegExp(`${searchText.value}`, "i"));
   if (option.value === "All") {
-    console.log("All");
-    return todos.value;
+    return todos.value.filter((t) => searchRegex.value.test(t.cont));
   } else if (option.value === "Complete") {
-    return todos.value.filter((t) => t.done === true);
+    return todos.value.filter((t) => t.done && searchRegex.value.test(t.cont));
   } else if (option.value === "Incomplete") {
-    return todos.value.filter((t) => t.done === false);
+    return todos.value.filter((t) => !t.done && searchRegex.value.test(t.cont));
   }
 });
 </script>
@@ -37,7 +36,7 @@ const filteredTodos = computed(() => {
         @addList="(msg) => todos.push({ id: id++, cont: msg, done: false })"
       />
       <div class="bl_filterWrap">
-        <SearchBox />
+        <SearchBox @searchInput="(txt) => (searchText = txt)" />
         <SelectBox @selectOption="(opt) => (option = opt)" />
       </div>
       <ul>
