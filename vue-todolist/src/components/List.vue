@@ -9,6 +9,11 @@ export default {
     // idNum: Number,
     obj: Object,
   },
+  methods: {
+    removeList(e) {
+      this.$emit("removeList", this.obj.id);
+    },
+  },
 };
 </script>
 
@@ -43,6 +48,7 @@ export default {
         src="@/assets/image/remove_circle_outline_black_24dp.svg"
         alt=""
         class="el_removeBtn el_img"
+        @click="removeList"
       />
     </div>
   </li>

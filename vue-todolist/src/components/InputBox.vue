@@ -23,24 +23,20 @@ export default {
   },
   methods: {
     addList(e) {
-      console.log(this);
-      // this.todos.push({ id: this.id++, cont: this.text, done: false });
-      this.$emit("addList", this.text);
-      // this.todos.push({
-      //   id: this.idNum++,
-      //   cont: "JavaScript 공부하기",
-      //   done: true,
-      // });
-
-      console.log(this.todos, this.idNum);
-      // console.log(this.idNum++);
+      if (this.text !== "" && this.text !== undefined) {
+        // 할 일이 입력된 경우
+        this.$emit("addList", this.text);
+        this.text = "";
+      } else {
+        // 할 일이 입력되지 않은 경우
+      }
     },
   },
 };
 </script>
 
 <template>
-  <div class="bl_inputWrap">
+  <form @submit.prevent="addList" class="bl_inputWrap">
     <input
       class="bl_inputBox"
       type="text"
@@ -54,7 +50,7 @@ export default {
         class="el_img24 el_addBtnImg__green"
       />
     </div>
-  </div>
+  </form>
 </template>
 
 <style scoped lang="scss">

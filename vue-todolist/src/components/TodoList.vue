@@ -16,8 +16,6 @@ let todos = ref([
   { id: id++, cont: "test1", done: false },
   { id: id++, cont: "JavaScript 공부하기", done: true },
 ]);
-const childMsg = ref("No child msg yet");
-console.log(id);
 </script>
 <template>
   <div class="wrap">
@@ -27,13 +25,17 @@ console.log(id);
         :todos="todos"
         @addList="(msg) => todos.push({ id: id++, cont: msg, done: false })"
       />
-      <div>{{ childMsg }}</div>
       <div class="bl_filterWrap">
         <SearchBox />
         <SelectBox />
       </div>
       <ul>
-        <List v-for="todo in todos" :key="todo.id" :obj="todo" />
+        <List
+          v-for="todo in todos"
+          :key="todo.id"
+          :obj="todo"
+          @removeList="(id) => (todos = todos.filter((t) => t.id !== id))"
+        />
       </ul>
     </main>
   </div>
