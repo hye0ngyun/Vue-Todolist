@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import Header from "./Header.vue";
 import InputBox from "./InputBox.vue";
 import SearchBox from "./SearchBox.vue";
@@ -12,10 +12,21 @@ import List from "./List.vue";
 // };
 const cont = ref("");
 let id = 0;
-let todos = ref([
+const todos = ref([
   { id: id++, cont: "test1", done: false },
   { id: id++, cont: "JavaScript 공부하기", done: true },
 ]);
+const option = ref("All");
+const filteredTodos = computed(() => {
+  if (option.value === "All") {
+    console.log("All");
+    return todos.value;
+  } else if (option.value === "Complete") {
+    return todos.value.filter((t) => t.done === true);
+  } else if (option.value === "Incomplete") {
+    return todos.value.filter((t) => t.done === false);
+  }
+});
 </script>
 <template>
   <div class="wrap">
@@ -27,11 +38,11 @@ let todos = ref([
       />
       <div class="bl_filterWrap">
         <SearchBox />
-        <SelectBox />
+        <SelectBox @selectOption="(opt) => (option = opt)" />
       </div>
       <ul>
         <List
-          v-for="todo in todos"
+          v-for="todo in filteredTodos"
           :key="todo.id"
           :obj="todo"
           @removeList="(id) => (todos = todos.filter((t) => t.id !== id))"

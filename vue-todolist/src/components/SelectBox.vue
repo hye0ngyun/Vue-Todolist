@@ -11,6 +11,7 @@ export default {
     selectOption(e) {
       this.selectTitle = e.target.innerText;
       this.$refs.realSelect.value = this.selectTitle;
+      this.$emit("selectOption", this.selectTitle);
     },
   },
   mount() {},
