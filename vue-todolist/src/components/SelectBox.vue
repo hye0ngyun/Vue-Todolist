@@ -47,6 +47,7 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-right: 10px;
+  flex-shrink: 5;
 }
 .bl_selectWrap {
   width: 100%;
@@ -65,7 +66,7 @@ export default {
     display: flex;
     align-items: center;
     padding-left: 10px;
-    max-width: 150%;
+    // max-width: 150px;
     width: 100%;
     background-color: #42b883cc;
     height: 50px;
@@ -89,6 +90,17 @@ export default {
   .bl_selectBoxItemWrap {
     visibility: visible;
     opacity: 1;
+  }
+}
+@media (max-width: 768px) {
+  .bl_selectWrap {
+    max-width: 120px;
+  }
+  .bl_selectBox {
+    // max-width: 100px;
+    .bl_selectBoxItemWrap {
+      max-width: 120px;
+    }
   }
 }
 </style>

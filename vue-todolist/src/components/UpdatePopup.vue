@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <div class="backdrop">
+  <div class="bl_popupWrap">
     <form class="bl_popup" @submit.prevent="updateList">
       <div class="bl_popupTtl">수정하기</div>
       <input
@@ -39,18 +39,38 @@ export default {
         <div class="el_btn" @click="this.$emit('cancelPopup')">취소</div>
       </div>
     </form>
+    <div class="backdrop" @click="this.$emit('cancelPopup')"></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.bl_popupWrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  // visibility: hidden;
+  // opacity: 0;
+  // transition: 0.15s;
+}
+.bl_popupWrap.js_active {
+  visibility: visible;
+  opacity: 1;
+}
 .backdrop {
   width: 100%;
   height: 100%;
   position: absolute;
   background-color: #000a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // padding: 20px;
+  top: 0;
+  left: 0;
 }
 .bl_popup {
   width: 300px;
@@ -61,6 +81,7 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  z-index: 1;
   .bl_popupTtl {
     width: 100%;
     height: 50px;

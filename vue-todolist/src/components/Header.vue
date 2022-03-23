@@ -23,8 +23,8 @@ export default {
   justify-content: center;
   align-items: center;
   height: 60px;
-  border-radius: 15px 15px 0 0;
+  border-radius: 5px 5px 0 0;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 2.4rem;
 }
 </style>

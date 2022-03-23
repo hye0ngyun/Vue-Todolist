@@ -10,8 +10,10 @@ import UpdatePopup from "./UpdatePopup.vue";
 const txt = ref("");
 let id = 0;
 const todos = ref([
-  { id: id++, cont: "test1", done: false },
   { id: id++, cont: "JavaScript 공부하기", done: true },
+  { id: id++, cont: "Vue.js 공부하기", done: false },
+  { id: id++, cont: "운동하기", done: true },
+  { id: id++, cont: "책읽기", done: false },
 ]);
 const option = ref("All");
 const searchText = ref("");
@@ -49,7 +51,7 @@ const updateId = ref(0);
         <SearchBox @searchInput="(txt) => (searchText = txt)" />
         <SelectBox @selectOption="(opt) => (option = opt)" />
       </div>
-      <ul>
+      <ul class="bl_listWrap">
         <List
           v-for="todo in filteredTodos"
           :key="todo.id"
@@ -65,18 +67,20 @@ const updateId = ref(0);
         />
       </ul>
     </main>
-    <UpdatePopup
-      v-if="popupBool"
-      :popupBool="popupBool"
-      :txt="txt"
-      @cancelPopup="popupBool = !popupBool"
-      @updateList="
-        (text) => {
-          popupBool = !popupBool;
-          txt = text;
-        }
-      "
-    />
+    <transition>
+      <UpdatePopup
+        v-if="popupBool"
+        :popupBool="popupBool"
+        :txt="txt"
+        @cancelPopup="popupBool = !popupBool"
+        @updateList="
+          (text) => {
+            popupBool = !popupBool;
+            txt = text;
+          }
+        "
+      />
+    </transition>
   </div>
 </template>
 
@@ -89,22 +93,51 @@ const updateId = ref(0);
   align-items: center;
   padding: 50px;
 }
-@media (max-width: 768px) {
-  .wrap {
-    padding: 30px;
-  }
-}
+
 .bl_todolist {
   max-width: 600px;
   width: 100%;
   max-height: 800px;
   height: 100%;
   background-color: #fff;
-  border-radius: 15px;
+  border-radius: 5px;
   box-shadow: 0px 0px 5px 0px #aaa;
+  display: flex;
+  flex-direction: column;
 }
 .bl_filterWrap {
   display: flex;
   border-bottom: 1px solid #42b883;
+}
+.bl_listWrap {
+  overflow-y: overlay;
+  height: 100%;
+  scrollbar-gutter: unset;
+}
+.bl_listWrap::-webkit-scrollbar {
+  display: block;
+  width: 5px;
+  padding: 0;
+}
+.bl_listWrap::-webkit-scrollbar-thumb {
+  width: 5px;
+  background-color: #42b883cc;
+  border-radius: 100px;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    padding: 30px;
+  }
 }
 </style>

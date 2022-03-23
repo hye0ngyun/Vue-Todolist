@@ -43,8 +43,9 @@ export default {
 }
 .bl_searchWrap {
   position: relative;
-  max-width: 450px;
+  // max-width: 450px;
   width: 100%;
+  flex-shrink: 1;
   .bl_searchBox {
     display: flex;
     max-width: 450px;

@@ -67,8 +67,13 @@ export default {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-color: #eeeeee;
+  background-color: #eee5;
+  transition: 0.15s;
+  &:hover {
+    background-color: #ccc;
+  }
 }
+
 .bl_inputWrap {
   display: flex;
   height: 50px;
