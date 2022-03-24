@@ -30,7 +30,7 @@ export default {
         class="hp_hidden"
         v-model="obj.done"
       />
-      <label :for="'chk' + obj.id">
+      <label :for="'chk' + obj.id" class="el_label">
         <img
           src="@/assets/image/checkbox_t.svg"
           alt=""
@@ -74,9 +74,9 @@ export default {
   align-items: center;
   cursor: pointer;
   transition: 0.15s;
-  background-color: #eee5;
+  background-color: #e5ebf188;
   &:hover {
-    background-color: #ccc;
+    background-color: #e5ebf1;
   }
 }
 .hp_hidden {
@@ -87,18 +87,20 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  border-bottom: 1px solid #aaaa;
-
+  border-bottom: 1px solid #eee;
   &:nth-child(2n) {
-    background-color: #eeeeee;
+    background-color: #f8f9fa;
   }
+}
+.el_label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .bl_contWrap {
   display: flex;
   align-items: center;
   padding-left: 15px;
-  font-size: 2rem;
-  color: #333;
   gap: 15px;
   overflow: hidden;
   // text-overflow: ellipsis;
@@ -108,6 +110,9 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 2rem;
+  line-height: 2.8rem;
+  color: #333;
 }
 .bl_cont__done {
   text-decoration: line-through;

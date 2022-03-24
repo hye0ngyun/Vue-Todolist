@@ -107,7 +107,7 @@ const updateId = ref(0);
 }
 .bl_filterWrap {
   display: flex;
-  border-bottom: 1px solid #42b883;
+  border-bottom: 1px solid #42b88355;
 }
 .bl_listWrap {
   overflow-y: overlay;

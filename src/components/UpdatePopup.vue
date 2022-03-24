@@ -101,6 +101,8 @@ export default {
     width: 70%;
     transition: 0.15s;
     font-size: 1.6rem;
+    line-height: 2.4rem;
+    font-family: "Noto Sans KR";
   }
   .el_input:hover,
   .el_input:focus {

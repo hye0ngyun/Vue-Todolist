@@ -67,10 +67,10 @@ export default {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-color: #eee5;
+  background-color: #e5ebf188;
   transition: 0.15s;
   &:hover {
-    background-color: #ccc;
+    background-color: #e5ebf1;
   }
 }
 
