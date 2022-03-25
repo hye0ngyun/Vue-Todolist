@@ -103,6 +103,7 @@ export default {
     font-size: 1.6rem;
     line-height: 2.4rem;
     font-family: "Noto Sans KR";
+    color: #111;
   }
   .el_input:hover,
   .el_input:focus {

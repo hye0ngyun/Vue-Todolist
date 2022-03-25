@@ -70,7 +70,7 @@ export default {
     width: 100%;
     background-color: #42b883cc;
     height: 50px;
-    color: #333;
+    color: #111;
     transition: 0.15s;
   }
   .bl_selectBoxItem:hover {

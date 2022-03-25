@@ -112,7 +112,7 @@ export default {
   white-space: nowrap;
   font-size: 2rem;
   line-height: 2.8rem;
-  color: #333;
+  color: #111;
 }
 .bl_cont__done {
   text-decoration: line-through;

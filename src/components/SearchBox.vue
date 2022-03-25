@@ -47,6 +47,8 @@ export default {
   width: 100%;
   flex-shrink: 1;
   .bl_searchBox {
+    font-family: "Noto Sans KR", "Roboto", "Gill Sans", "Gill Sans MT", Calibri,
+      "Trebuchet MS", sans-serif;
     display: flex;
     max-width: 450px;
     height: 50px;
@@ -54,12 +56,16 @@ export default {
     outline: none;
     border: none;
     background-color: #ffffff;
-    color: #333;
+    color: #111;
     font-size: 2rem;
+    line-height: 2.8rem;
     padding-left: 50px;
   }
   .bl_searchBox::placeholder {
+    font-family: "Noto Sans KR", "Roboto", "Gill Sans", "Gill Sans MT", Calibri,
+      "Trebuchet MS", sans-serif;
     font-size: 2rem;
+    line-height: 2.8rem;
   }
 }
 </style>

@@ -78,16 +78,21 @@ export default {
   display: flex;
   height: 50px;
   .bl_inputBox {
+    font-family: "Noto Sans KR", "Roboto", "Gill Sans", "Gill Sans MT", Calibri,
+      "Trebuchet MS", sans-serif;
     max-width: 550px;
     width: 100%;
     outline: none;
     border: none;
-    background-color: #333333;
-    color: #fff;
+    background-color: #3a3845;
+    color: #eee;
     padding-left: 15px;
     font-size: 2rem;
+    line-height: 2.8rem;
   }
   .bl_inputBox::placeholder {
+    font-family: "Noto Sans KR", "Roboto", "Gill Sans", "Gill Sans MT", Calibri,
+      "Trebuchet MS", sans-serif;
     font-size: 2rem;
   }
 }
