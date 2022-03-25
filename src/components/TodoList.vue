@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import Header from "./Header.vue";
 import InputBox from "./InputBox.vue";
 import SearchBox from "./SearchBox.vue";
@@ -9,21 +9,22 @@ import UpdatePopup from "./UpdatePopup.vue";
 
 const txt = ref("");
 let id = 0;
-const todos = ref([
-  { id: id++, cont: "JavaScript 공부하기", done: true },
-  { id: id++, cont: "Vue.js 공부하기", done: false },
-  { id: id++, cont: "운동하기", done: true },
-  { id: id++, cont: "책읽기", done: false },
-]);
+const todos = ref([]);
 const option = ref("All");
 const searchText = ref("");
 let searchRegex = ref(new RegExp(searchText.value, "i"));
 const filteredTodos = computed(() => {
   // searchText가 입력될때마다 조건에 맞는 결과 보여주기
   // 리스트를 수정한 경우 todos.cont를 업데이트
+  let idCnt = 0;
+  todos.value.forEach((t) => {
+    t.id = idCnt++;
+  });
+  id = todos.value.length;
   todos.value = todos.value.map((t) => {
     if (!!txt.value) {
       t.cont = t.id === updateId.value ? txt.value : t.cont;
+      t.id = id++;
     }
     return t;
   });
@@ -36,17 +37,35 @@ const filteredTodos = computed(() => {
     return todos.value.filter((t) => !t.done && searchRegex.value.test(t.cont));
   }
 });
+// todos 값이 변경된 경우 함수 실행
+watch(todos, () => {
+  // console.log(1);
+});
 const popupBool = ref(false);
 const updateId = ref(0);
+onMounted(() => {
+  // localStorage를 이용해 브라우저에 todos 값 저장
+  const localTodos = !JSON.parse(localStorage.getItem("todos"))
+    ? JSON.parse("[]")
+    : JSON.parse(localStorage.getItem("todos"));
+  const localId = localTodos.length;
+  id = localId;
+  todos.value = localTodos;
+});
+function add(msg) {
+  todos.value.push({ id: id++, cont: msg, done: false });
+  localStorage.setItem("todos", JSON.stringify(todos.value));
+}
+function remove(id) {
+  todos.value = todos.value.filter((t) => t.id !== id);
+  localStorage.setItem("todos", JSON.stringify(todos.value));
+}
 </script>
 <template>
   <div class="wrap">
     <main class="bl_todolist">
       <Header />
-      <InputBox
-        :todos="todos"
-        @addList="(msg) => todos.push({ id: id++, cont: msg, done: false })"
-      />
+      <InputBox :todos="todos" @addList="add" />
       <div class="bl_filterWrap">
         <SearchBox @searchInput="(txt) => (searchText = txt)" />
         <SelectBox @selectOption="(opt) => (option = opt)" />
@@ -56,7 +75,7 @@ const updateId = ref(0);
           v-for="todo in filteredTodos"
           :key="todo.id"
           :obj="todo"
-          @removeList="(id) => (todos = todos.filter((t) => t.id !== id))"
+          @removeList="remove"
           @updateListPopup="
             (id, t) => {
               popupBool = !popupBool;
