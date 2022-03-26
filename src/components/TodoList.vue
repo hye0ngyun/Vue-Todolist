@@ -20,14 +20,7 @@ const filteredTodos = computed(() => {
   todos.value.forEach((t) => {
     t.id = idCnt++;
   });
-  id = todos.value.length;
-  todos.value = todos.value.map((t) => {
-    if (!!txt.value) {
-      t.cont = t.id === updateId.value ? txt.value : t.cont;
-      t.id = id++;
-    }
-    return t;
-  });
+
   searchRegex = ref(new RegExp(`${searchText.value}`, "i"));
   if (option.value === "All") {
     return todos.value.filter((t) => searchRegex.value.test(t.cont));
@@ -38,9 +31,14 @@ const filteredTodos = computed(() => {
   }
 });
 // todos 값이 변경된 경우 함수 실행
-watch(todos, () => {
-  // console.log(1);
-});
+// watch(todos, (e) => {
+//   // console.log(e);
+// });
+// watch(todos, () => {
+//   // todos.value.forEach((t) => {
+//   //   console.log(t.done);
+//   // });
+// });
 const popupBool = ref(false);
 const updateId = ref(0);
 onMounted(() => {
@@ -58,6 +56,23 @@ function add(msg) {
 }
 function remove(id) {
   todos.value = todos.value.filter((t) => t.id !== id);
+  localStorage.setItem("todos", JSON.stringify(todos.value));
+}
+function update(msg) {
+  popupBool.value = !popupBool.value;
+  txt.value = msg;
+  todos.value = todos.value.map((t) => {
+    if (!!txt.value) {
+      t.cont = t.id === updateId.value ? txt.value : t.cont;
+      localStorage.setItem("todos", JSON.stringify(todos.value));
+    }
+    return t;
+  });
+}
+function check(id, done) {
+  todos.value.forEach((t) => {
+    t.done = t.id === id ? done : t.done;
+  });
   localStorage.setItem("todos", JSON.stringify(todos.value));
 }
 </script>
@@ -83,6 +98,7 @@ function remove(id) {
               txt = t;
             }
           "
+          @checkList="check"
         />
       </ul>
     </main>
@@ -92,12 +108,7 @@ function remove(id) {
         :popupBool="popupBool"
         :txt="txt"
         @cancelPopup="popupBool = !popupBool"
-        @updateList="
-          (text) => {
-            popupBool = !popupBool;
-            txt = text;
-          }
-        "
+        @updateList="update"
       />
     </transition>
   </div>

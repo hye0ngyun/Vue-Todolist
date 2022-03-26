@@ -16,6 +16,10 @@ export default {
     updateListPopup() {
       this.$emit("updateListPopup", this.obj.id, this.obj.cont);
     },
+    checkList() {
+      this.obj.done = !this.obj.done;
+      this.$emit("checkList", this.obj.id, this.obj.done);
+    },
   },
 };
 </script>
@@ -28,7 +32,7 @@ export default {
         name=""
         :id="'chk' + obj.id"
         class="hp_hidden"
-        v-model="obj.done"
+        @click="checkList"
       />
       <label :for="'chk' + obj.id" class="el_label">
         <img
