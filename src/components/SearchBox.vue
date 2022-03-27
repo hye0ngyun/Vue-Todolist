@@ -60,6 +60,7 @@ export default {
     font-size: 2rem;
     line-height: 2.8rem;
     padding-left: 50px;
+    border-radius: 0;
   }
   .bl_searchBox::placeholder {
     font-family: "Noto Sans KR", "Roboto", "Gill Sans", "Gill Sans MT", Calibri,

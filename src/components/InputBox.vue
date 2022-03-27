@@ -89,6 +89,7 @@ export default {
     padding-left: 15px;
     font-size: 2rem;
     line-height: 2.8rem;
+    border-radius: 0;
   }
   .bl_inputBox::placeholder {
     font-family: "Noto Sans KR", "Roboto", "Gill Sans", "Gill Sans MT", Calibri,
