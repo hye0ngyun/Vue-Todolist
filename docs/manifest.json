@@ -1,0 +1,16 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "hye0ngyun.github",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "hye0ngyun.github",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "./favicon.ico"
+    }
+  ]
+}
