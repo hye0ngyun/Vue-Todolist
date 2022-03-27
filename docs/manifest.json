@@ -1,13 +1,13 @@
 {
-  "background_color": "#ffffff",
+  "background_color": "#eeeeee",
   "dir": "ltr",
   "display": "standalone",
-  "name": "hye0ngyun.github",
+  "name": "Todo List",
   "orientation": "any",
   "scope": "/",
-  "short_name": "hye0ngyun.github",
-  "start_url": "/",
-  "theme_color": "#ffffff",
+  "short_name": "Todo List",
+  "start_url": "https://hye0ngyun.github.io/vue-todolist/",
+  "theme_color": "#42b883",
   "icons": [
     {
       "src": "./favicon.ico"
