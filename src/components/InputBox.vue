@@ -1,37 +1,19 @@
-<script>
-export default {
-  setup() {},
-  data() {
-    return {
-      text: "",
-      id: 2,
-    };
-  },
-  computed: {
-    // id() {
-    //   return idNum;
-    // },
-  },
-  emits: ["addList"],
-  props: {
-    todos: {
-      id: Number,
-      cont: String,
-      done: Boolean,
-    },
-    idNum: Number,
-  },
-  methods: {
-    addList(e) {
-      if (this.text !== "" && this.text !== undefined) {
-        // 할 일이 입력된 경우
-        this.$emit("addList", this.text);
-        this.text = "";
-      } else {
-        // 할 일이 입력되지 않은 경우
-      }
-    },
-  },
+<script setup>
+import { reactive } from "@vue/reactivity";
+
+const emit = defineEmits(["addList"]);
+const state = reactive({
+  text: "",
+});
+
+const addList = (text) => {
+  if (state.text !== "" && state.text !== undefined) {
+    // 할 일이 입력된 경우
+    emit("addList", state.text);
+    state.text = "";
+  } else {
+    // 할 일이 입력되지 않은 경우
+  }
 };
 </script>
 
@@ -41,7 +23,7 @@ export default {
       class="bl_inputBox"
       type="text"
       placeholder="할 일을 입력하세요"
-      v-model="text"
+      v-model="state.text"
       autofocus
     />
     <div class="el_addBtn" @click="addList">

@@ -1,16 +1,13 @@
-<script>
-export default {
-  setup() {},
-  data() {
-    return {
-      title: "Todo List",
-    };
-  },
-};
+<script setup>
+import { reactive } from "@vue/reactivity";
+
+const state = reactive({
+  title: "Vue Todo List",
+});
 </script>
 <template>
   <header class="bl_header">
-    <span>{{ title }}</span>
+    <span>{{ state.title }}</span>
   </header>
 </template>
 
