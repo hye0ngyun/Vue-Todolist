@@ -6,6 +6,7 @@ const state = reactive({
   text: "",
 });
 
+// method
 const addList = (text) => {
   if (state.text !== "" && state.text !== undefined) {
     // 할 일이 입력된 경우

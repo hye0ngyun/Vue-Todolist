@@ -1,26 +1,22 @@
-<script>
-export default {
-  // data() {
-  //   return;
-  // },
-  props: {
-    // cont: String,
-    // done: Boolean,
-    // idNum: Number,
-    obj: Object,
-  },
-  methods: {
-    removeList(e) {
-      this.$emit("removeList", this.obj.id);
-    },
-    updateListPopup() {
-      this.$emit("updateListPopup", this.obj.id, this.obj.cont);
-    },
-    checkList() {
-      this.obj.done = !this.obj.done;
-      this.$emit("checkList", this.obj.id, this.obj.done);
-    },
-  },
+<script setup>
+import { reactive } from "@vue/reactivity";
+
+const props = defineProps({
+  obj: Object,
+});
+const emit = defineEmits(["removeList", "updateListPopup", "checkList"]);
+const state = reactive({});
+
+// method
+const removeList = () => {
+  emit("removeList", props.obj.id);
+};
+const updateListPopup = () => {
+  emit("updateListPopup", props.obj.id, props.obj.cont);
+};
+const checkList = () => {
+  props.obj.done = !props.obj.done;
+  emit("checkList", props.obj.id, props.obj.done);
 };
 </script>
 

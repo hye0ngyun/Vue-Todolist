@@ -1,20 +1,20 @@
-<script>
-export default {
-  setup() {},
-  data() {
-    return {
-      title: "Todo List",
-      selectTitle: "All",
-    };
-  },
-  methods: {
-    selectOption(e) {
-      this.selectTitle = e.target.innerText;
-      this.$refs.realSelect.value = this.selectTitle;
-      this.$emit("selectOption", this.selectTitle);
-    },
-  },
-  mount() {},
+<script setup>
+import { reactive, ref } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
+
+const emit = defineEmits(["selectOption"]);
+const state = reactive({
+  selectTitle: "All",
+});
+
+// ref - DOM Select
+const realSelect = ref(null);
+
+// method
+const selectOption = (e) => {
+  state.selectTitle = e.target.innerText;
+  realSelect.value = state.selectTitle;
+  emit("selectOption", state.selectTitle);
 };
 </script>
 <template>
@@ -26,7 +26,7 @@ export default {
     </select>
     <div class="bl_selectBox">
       <div class="bl_selectBoxItem bl_selecteBoxTitle">
-        <span ref="selectTitle">{{ selectTitle }}</span>
+        <span ref="selectTitle">{{ state.selectTitle }}</span>
         <img
           src="@/assets/image/arrow_drop_down_black_24dp.svg"
           alt="dropdown_arrow"

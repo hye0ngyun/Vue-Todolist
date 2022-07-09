@@ -2,7 +2,7 @@
 import { reactive } from "@vue/reactivity";
 
 const state = reactive({
-  title: "Vue Todo List",
+  title: "Todo List",
 });
 </script>
 <template>

@@ -1,12 +1,9 @@
-<script>
-export default {
-  setup() {},
-  data() {
-    return {
-      searchText: "",
-    };
-  },
-};
+<script setup>
+import { reactive } from "@vue/reactivity";
+
+const state = reactive({
+  searchText: "",
+});
 </script>
 
 <template>
@@ -15,8 +12,8 @@ export default {
       class="bl_searchBox"
       type="text"
       placeholder="검색어를 입력하세요"
-      v-model="searchText"
-      @input="this.$emit('searchInput', searchText)"
+      v-model="state.searchText"
+      @input="this.$emit('searchInput', state.searchText)"
     />
     <img
       src="@/assets/image/search_black_24dp.svg"

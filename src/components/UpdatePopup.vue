@@ -1,25 +1,18 @@
-<script>
-export default {
-  data() {
-    return {
-      text: "",
-    };
-  },
-  props: {
-    popupBool: Boolean,
-    updateText: String,
-    txt: String,
-  },
-  methods: {
-    updateList() {
-      this.$emit("updateList", this.$refs.updateTxt.value);
-    },
-  },
-  // computed: {
-  //   baseText() {
-  //     return this.txt;
-  //   },
-  // },
+<script setup>
+import { reactive, ref } from "@vue/reactivity";
+
+const emit = defineEmits(["updateList"]);
+const props = defineProps({
+  popupBool: Boolean,
+  updateText: String,
+  text: String,
+});
+
+const state = reactive({});
+
+// method
+const updateList = () => {
+  emit("updateList", props.text);
 };
 </script>
 
@@ -27,13 +20,7 @@ export default {
   <div class="bl_popupWrap">
     <form class="bl_popup" @submit.prevent="updateList">
       <div class="bl_popupTtl">수정하기</div>
-      <input
-        type="text"
-        class="el_input"
-        ref="updateTxt"
-        v-model="txt"
-        autofocus
-      />
+      <input type="text" class="el_input" v-model="text" autofocus />
       <div class="bl_btnWrap">
         <div class="el_btn" @click="updateList">수정</div>
         <div class="el_btn" @click="this.$emit('cancelPopup')">취소</div>
@@ -52,9 +39,6 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  // visibility: hidden;
-  // opacity: 0;
-  // transition: 0.15s;
 }
 .bl_popupWrap.js_active {
   visibility: visible;
@@ -65,10 +49,6 @@ export default {
   height: 100%;
   position: absolute;
   background-color: #000a;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // padding: 20px;
   top: 0;
   left: 0;
 }
