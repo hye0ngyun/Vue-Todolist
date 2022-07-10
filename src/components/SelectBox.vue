@@ -42,7 +42,6 @@ const selectOption = (e) => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/base.css";
 .bl_selecteBoxTitle {
   display: flex;
   justify-content: space-between;

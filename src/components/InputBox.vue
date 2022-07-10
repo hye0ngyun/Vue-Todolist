@@ -38,7 +38,6 @@ const addList = (text) => {
 </template>
 
 <style scoped lang="scss">
-@import "@/assets/base.css";
 .el_img24 {
   max-width: 24px;
   width: 100%;

@@ -7,7 +7,6 @@ import TodoList from "./components/TodoList.vue";
 </template>
 
 <style lang="scss">
-@import "./assets/base.css";
 body,
 html,
 #app {

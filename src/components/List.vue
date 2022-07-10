@@ -123,8 +123,6 @@ const checkList = () => {
 }
 .bl_imgWrap {
   display: flex;
-  // gap: 24px;
-  // padding-right: 13px;
   max-width: 100px;
   width: 100%;
   height: 100%;
