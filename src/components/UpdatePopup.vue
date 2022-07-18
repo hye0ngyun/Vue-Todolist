@@ -1,7 +1,7 @@
 <script setup>
 import { reactive, ref } from "@vue/reactivity";
 
-const emit = defineEmits(["updateList"]);
+const emit = defineEmits(["updateList", "cancelPopup"]);
 const props = defineProps({
   popupBool: Boolean,
   updateText: String,
@@ -23,10 +23,10 @@ const updateList = () => {
       <input type="text" class="el_input" v-model="text" autofocus />
       <div class="bl_btnWrap">
         <div class="el_btn" @click="updateList">수정</div>
-        <div class="el_btn" @click="this.$emit('cancelPopup')">취소</div>
+        <div class="el_btn" @click="emit('cancelPopup')">취소</div>
       </div>
     </form>
-    <div class="backdrop" @click="this.$emit('cancelPopup')"></div>
+    <div class="backdrop" @click="emit('cancelPopup')"></div>
   </div>
 </template>
 

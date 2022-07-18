@@ -1,6 +1,8 @@
 <script setup>
 import { reactive } from "@vue/reactivity";
 
+const emit = defineEmits(["searchInput"]);
+
 const state = reactive({
   searchText: "",
 });
@@ -13,7 +15,7 @@ const state = reactive({
       type="text"
       placeholder="검색어를 입력하세요"
       v-model="state.searchText"
-      @input="this.$emit('searchInput', state.searchText)"
+      @input="emit('searchInput', state.searchText)"
     />
     <img
       src="@/assets/image/search_black_24dp.svg"
