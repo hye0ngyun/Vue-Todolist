@@ -42,7 +42,7 @@ const filteredTodos = computed(() => {
 
 // method
 const add = (msg) => {
-  state.todos.push({ id: id++, cont: msg, done: false });
+  state.todos.push({ id: id++, cont: msg, done: false, date: new Date() });
   setLocalStorage();
 };
 const remove = (id) => {
@@ -145,7 +145,7 @@ onMounted(() => {
   border-bottom: 1px solid #42b88355;
 }
 .bl_listWrap {
-  overflow-y: overlay;
+  /* overflow-y: overlay; */
   height: 100%;
   scrollbar-gutter: unset;
 }
