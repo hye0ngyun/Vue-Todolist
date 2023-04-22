@@ -1,7 +1,7 @@
 <script setup>
 import { reactive } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
-import TodoList from "./components/TodoList.vue";
+import TodoList from "./components/todo-list/TodoList.vue";
 
 const state = reactive({
   date: new Date(),
