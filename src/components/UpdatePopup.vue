@@ -39,6 +39,7 @@ const updateList = () => {
   align-items: center;
   padding: 20px;
   top: 0;
+  z-index: 1;
 }
 .bl_popupWrap.js_active {
   visibility: visible;

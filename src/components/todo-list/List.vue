@@ -25,14 +25,26 @@ const checkList = () => {
 <template>
   <li class="bl_list">
     <div class="bl_date-wrap">
-      <div class="bl_date start">
+      <label :for="`date-start-${obj.id}`" class="bl_date start">
+        <input
+          class="date-picker"
+          type="date"
+          :name="`date-start-${obj.id}`"
+          :id="`date-start-${obj.id}`"
+        />
         <div class="date">{{ format.d(obj?.date) }}</div>
         <div class="time">{{ format.t(obj?.date) }}</div>
-      </div>
-      <div class="bl_date end">
+      </label>
+      <label :for="`date-end-${obj.id}`" class="bl_date end">
+        <input
+          class="date-picker"
+          type="date"
+          :name="`date-end-${obj.id}`"
+          :id="`date-end-${obj.id}`"
+        />
         <div class="date">{{ format.d(obj?.date) }}</div>
         <div class="time">{{ format.t(obj?.date) }}</div>
-      </div>
+      </label>
     </div>
     <div class="bl_contWrap">
       <input
@@ -107,6 +119,9 @@ const checkList = () => {
       flex-direction: column;
       gap: 5px;
       justify-content: center;
+    }
+    .date-picker {
+      display: none;
     }
     &::after {
       content: "";

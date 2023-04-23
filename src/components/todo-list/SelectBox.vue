@@ -42,15 +42,16 @@ const selectOption = (e) => {
 </template>
 
 <style scoped lang="scss">
+.bl_selectWrap {
+  width: 150px;
+  flex-shrink: 0;
+  z-index: 1;
+}
 .bl_selecteBoxTitle {
   display: flex;
   justify-content: space-between;
   padding-right: 10px;
   flex-shrink: 5;
-}
-.bl_selectWrap {
-  width: 100%;
-  max-width: 150px;
 }
 .hp_hidden {
   display: none;
@@ -93,12 +94,12 @@ const selectOption = (e) => {
 }
 @media (max-width: 768px) {
   .bl_selectWrap {
-    max-width: 120px;
+    max-width: 100px;
   }
   .bl_selectBox {
     // max-width: 100px;
     .bl_selectBoxItemWrap {
-      max-width: 120px;
+      max-width: 100px;
     }
   }
 }

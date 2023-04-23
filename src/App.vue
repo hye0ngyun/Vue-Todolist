@@ -2,6 +2,7 @@
 import { reactive } from "@vue/reactivity";
 import { computed } from "@vue/runtime-core";
 import TodoList from "./components/todo-list/TodoList.vue";
+import format from "@/lib/utils/format.ts";
 
 const state = reactive({
   date: new Date(),
@@ -26,8 +27,13 @@ setInterval(() => {
 
 <template>
   <div class="wrap">
-    <h2 class="date">
-      {{ `${currHours}:${currMinutes}:${currSeconds}` }}
+    <h2 class="date-wrap">
+      <div class="date">
+        {{ Intl.DateTimeFormat().format(new Date()) }}
+      </div>
+      <div class="time">
+        {{ `${currHours}:${currMinutes}:${currSeconds}` }}
+      </div>
     </h2>
     <TodoList />
   </div>
@@ -40,7 +46,7 @@ html,
   height: 100%;
 }
 </style>
-<style scoped>
+<style lang="scss" scoped>
 .wrap {
   display: flex;
   flex-direction: column;
@@ -50,8 +56,17 @@ html,
   align-items: center;
   padding: 25px;
 }
-.date {
-  font-size: 3rem;
+.date-wrap {
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  .date {
+    font-size: 3rem;
+  }
+  .time {
+    font-size: 2.5rem;
+  }
 }
 </style>
