@@ -67,14 +67,14 @@ const check = (id, done) => {
   setLocalStorage();
 };
 const setLocalStorage = () => {
-  localStorage.setItem("todos", JSON.stringify(state.todos));
+  localStorage.setItem("vue_todos", JSON.stringify(state.todos));
 };
 
 // lifecycle
 onMounted(() => {
   // localStorage를 이용해 브라우저에 todos 값 저장
-  const localTodos = JSON.parse(localStorage.getItem("todos"))
-    ? JSON.parse(localStorage.getItem("todos"))
+  const localTodos = JSON.parse(localStorage.getItem("vue_todos"))
+    ? JSON.parse(localStorage.getItem("vue_todos"))
     : JSON.parse("[]");
   const localId = localTodos.length;
   id = localId;
